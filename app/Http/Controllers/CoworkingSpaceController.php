@@ -10,7 +10,7 @@ class CoworkingSpaceController extends Controller
     public function index()
     {
         $spaces = CoworkingSpace::all();
-        return view('coworking-spaces.index', compact('spaces'));
+        return view('CoworkingSpace.index', compact('spaces'));
     }
 
     public function create()
@@ -27,7 +27,7 @@ class CoworkingSpaceController extends Controller
 
         CoworkingSpace::create($request->all());
 
-        return redirect()->route('dashboard');
+        return redirect()->route('coworking-spaces.index');
     }
 
     public function edit(CoworkingSpace $coworkingSpace)
@@ -43,7 +43,7 @@ class CoworkingSpaceController extends Controller
         ]);
 
         $coworkingSpace->update($request->all());
-        return redirect()->route('dashboard');
+        return redirect()->route('coworking-spaces.index');
     }
 
     public function destroy($id)
@@ -55,6 +55,6 @@ class CoworkingSpaceController extends Controller
         $coworkingSpace->delete();
 
         // Redirige con un mensaje de éxito
-        return redirect()->route('dashboard');
+        return redirect()->route('coworking-spaces.index');
     }
 }

@@ -15,6 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    {{-- Menu to admin --}}
+                    <x-nav-link :href="route('coworking-spaces.index')" :active="request()->routeIs('coworking-spaces.*')">
+                        {{ __('Coworking Spaces') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link :href="route('admin.reservations')" :active="request()->routeIs('admin.reservations')">
+                        {{ __('Reservations') }}
+                    </x-nav-link>
                 </div>
             </div>
 

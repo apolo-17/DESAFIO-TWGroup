@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function reservations()
     {
         $reservations = Reservation::all();
-        return view('admin.reservations', compact('reservations'));
+        return view('Reservations.index', compact('reservations'));
     }
 
     public function updateStatus(Request $request, $id)
