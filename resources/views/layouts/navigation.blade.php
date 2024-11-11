@@ -16,13 +16,19 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     {{-- Menu to admin --}}
-                    <x-nav-link :href="route('coworking-spaces.index')" :active="request()->routeIs('coworking-spaces.*')">
-                        {{ __('Coworking Spaces') }}
-                    </x-nav-link>
-                    
-                    <x-nav-link :href="route('admin.reservations')" :active="request()->routeIs('admin.reservations')">
-                        {{ __('Reservations') }}
-                    </x-nav-link>
+                    @if (auth()->user()->isAdmin())
+                        <x-nav-link :href="route('coworking-spaces.index')" :active="request()->routeIs('coworking-spaces.*')">
+                            {{ __('Coworking Spaces') }}
+                        </x-nav-link>
+                        
+                        <x-nav-link :href="route('admin.reservations')" :active="request()->routeIs('admin.reservations')">
+                            {{ __('Reservations') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('reservations.index')" :active="request()->routeIs('reservations.index')">
+                            {{ __('My Reservations') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

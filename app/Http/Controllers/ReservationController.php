@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CoworkingSpace;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,19 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = auth()->user()->reservations;
-        return view('reservations.index', compact('reservations'));
+
+        return view('Reservations.index', compact('reservations'));
+    }
+
+    public function create()
+    {
+        $coworking_spaces = CoworkingSpace::all();
+        return view('Reservations.form', compact('coworking_spaces'));
     }
 
     public function store(Request $request)
     {
+
         $request->validate([
             'coworking_space_id' => 'required|exists:coworking_spaces,id',
             'reservation_time' => 'required|date|after_or_equal:now',

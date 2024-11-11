@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function reservations()
+    public function reservations(Request $request)
     {
-        $reservations = Reservation::all();
+        $query = Reservation::query();
+
+        if ($request->has('search')) {
+            $query->whereHas('coworkingSpace', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $reservations = $query->get();
         return view('Reservations.index', compact('reservations'));
     }
 

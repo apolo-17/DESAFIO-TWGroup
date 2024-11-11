@@ -18,11 +18,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        $data = auth()->user()->isAdmin() ? CoworkingSpace::all() : null;
-        return view('dashboard', ['spaces' => $data]);
+        return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('reservations', ReservationController::class)->only(['index', 'store']);
+    Route::resource('reservations', ReservationController::class)->only(['index', 'create', 'store']);
 });
 
 Route::middleware('auth')->group(function () {

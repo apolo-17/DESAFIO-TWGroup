@@ -12,6 +12,12 @@ class Reservation extends Model
         'reservation_time' => 'datetime',
     ];
 
+    const STATUS = [
+        'Pending' => 'Pending',
+        'Accepted' => 'Accepted',
+        'Rejected' => 'Rejected'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
